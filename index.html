@@ -162,6 +162,52 @@
    style="position:fixed;right:20px;bottom:20px;background:#25D366;color:white;padding:14px 20px;border-radius:50px;text-decoration:none;font-weight:bold;">
   💬 WhatsApp
 </a>
-  
+  <!-- Add Money -->
+<div class="card" style="margin-top:20px;">
+  <h2>💰 Add Money</h2>
+
+  <input
+    type="number"
+    id="addAmount"
+    placeholder="Enter Amount ₹"
+    min="1"
+  >
+
+  <input
+    type="text"
+    id="utr"
+    placeholder="Enter UTR / Transaction ID"
+  >
+
+  <button onclick="submitPayment()">
+    Submit Payment
+  </button>
+
+  <p id="paymentStatus" style="margin-top:15px;text-align:center;"></p>
+</div>
+
+<script>
+function submitPayment() {
+  const amount = document.getElementById("addAmount").value;
+  const utr = document.getElementById("utr").value.trim();
+  const status = document.getElementById("paymentStatus");
+
+  if (!amount || Number(amount) <= 0) {
+    status.innerHTML = "⚠️ Amount enter karo.";
+    return;
+  }
+
+  if (!utr) {
+    status.innerHTML = "⚠️ UTR / Transaction ID enter karo.";
+    return;
+  }
+
+  status.innerHTML =
+    "✅ Payment request submitted.<br>" +
+    "Amount: ₹" + Number(amount).toFixed(2) +
+    "<br>UTR: " + utr +
+    "<br><small>Admin verification ke baad balance add hoga.</small>";
+}
+</script>
 </body>
 </html>
